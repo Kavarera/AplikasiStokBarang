@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FastWork_AplikasiStokBarang_Y7DMVMY1
+namespace FastWork_AplikasiStokBarang_Y7DMVMY1.views.UserControls
 {
-    public partial class Form1 : Form
+    public partial class BarangKeluarUserControl : UserControl
     {
-        public Form1()
+        public BarangKeluarUserControl()
         {
             InitializeComponent();
         }

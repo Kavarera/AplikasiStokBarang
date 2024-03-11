@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastWork_AplikasiStokBarang_Y7DMVMY1.controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            MainController mc = new MainController();
+            Application.Run(mc.GetMainViews());
         }
     }
 }
