@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FastWork_AplikasiStokBarang_Y7DMVMY1.models
 {
-    public enum EnumPelanggan
+    public abstract class UserControllers
     {
-        REGULAR=0,
-        ANGGOTA = 1
+        public abstract UserControl GetView();
+        public abstract void CloseView();
     }
 }

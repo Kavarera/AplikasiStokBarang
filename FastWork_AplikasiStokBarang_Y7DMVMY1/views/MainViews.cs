@@ -1,4 +1,5 @@
 ﻿using FastWork_AplikasiStokBarang_Y7DMVMY1.controllers;
+using FastWork_AplikasiStokBarang_Y7DMVMY1.views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,25 +24,32 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.views
         private void panelBarang_DoubleClick(object sender, EventArgs e)
         {
             panelBarang.BackColor = Color.FromArgb(97, 168, 127);//active
-            panelAnggota.BackColor = Color.FromArgb(97, 215, 146);
             panelHistory.BackColor = Color.FromArgb(97, 215, 146);
             //run controller setup
-            controller.GetBarangUC();
+            controller.GetBarangUC(1);
 
-        }
-
-        private void panelAnggota_DoubleClick(object sender, EventArgs e)
-        {
-            panelBarang.BackColor = Color.FromArgb(97, 215, 146);
-            panelAnggota.BackColor = Color.FromArgb(97, 168, 127);//active
-            panelHistory.BackColor = Color.FromArgb(97, 215, 146);
         }
 
         private void panelHistory_DoubleClick(object sender, EventArgs e)
         {
             panelBarang.BackColor = Color.FromArgb(97, 215, 146);
-            panelAnggota.BackColor = Color.FromArgb(97, 215, 146);
             panelHistory.BackColor = Color.FromArgb(97, 168, 127);//active
+        }
+
+        private void panelOption2_Click(object sender, EventArgs e)
+        {
+            if (controller.optionState !=null)
+            {
+                controller.GetBarangUC(2);
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            if (controller.optionState != null)
+            {
+                controller.GetBarangUC(1);
+            }
         }
     }
 }
