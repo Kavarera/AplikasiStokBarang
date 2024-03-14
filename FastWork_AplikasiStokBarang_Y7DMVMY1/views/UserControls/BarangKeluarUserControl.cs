@@ -40,7 +40,7 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.views.UserControls
         }
         public void CloseView()
         {
-            this.CloseView();
+            this.Dispose();
         }
 
         private void checkBox1_CheckedChanged(object sender, System.EventArgs e)

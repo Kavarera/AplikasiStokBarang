@@ -52,7 +52,7 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.views.UserControls
 
         public void CloseView()
         {
-            this.CloseView();
+            this.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)

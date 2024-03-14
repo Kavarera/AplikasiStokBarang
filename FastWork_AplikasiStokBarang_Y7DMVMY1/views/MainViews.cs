@@ -34,6 +34,9 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.views
         {
             panelBarang.BackColor = Color.FromArgb(97, 215, 146);
             panelHistory.BackColor = Color.FromArgb(97, 168, 127);//active
+
+            //Run controller setup for history
+            controller.GetHistorySetup();
         }
 
         private void panelOption2_Click(object sender, EventArgs e)
