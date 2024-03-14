@@ -16,6 +16,7 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.controllers
     {
         History _view = null;
         DataTable history=null;
+        DataTable historyMasuk = null;
         public HistoryController()
         {
             this._view = new History(this);
@@ -37,9 +38,35 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.controllers
             try
             {
                 ConnectionUtil.OpenConnection();
-                MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 history = new DataTable();
-                sda.Fill(history);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    // Tambahkan kolom ke DataTable
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        history.Columns.Add(reader.GetName(i));
+                    }
+
+                    // Baca hasil query dan tambahkan ke DataTable
+                    while (reader.Read())
+                    {
+                        DataRow row = history.NewRow();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string columnName = reader.GetName(i);
+                            if (columnName == "anggota") // Jika nama kolom adalah "anggota"
+                            {
+                                int tipeValue = reader.GetInt32(i);
+                                row[columnName] = tipeValue == 1 ? "YA" : "TIDAK";
+                            }
+                            else
+                            {
+                                row[columnName] = reader.GetValue(i);
+                            }
+                        }
+                        history.Rows.Add(row);
+                    }
+                }
                 return history;
             } catch(Exception e)
             {
@@ -53,10 +80,37 @@ namespace FastWork_AplikasiStokBarang_Y7DMVMY1.controllers
             try
             {
                 ConnectionUtil.OpenConnection();
-                MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
-                history = new DataTable();
-                sda.Fill(history);
-                return history;
+                historyMasuk = new DataTable();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    // Tambahkan kolom ke DataTable
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        historyMasuk.Columns.Add(reader.GetName(i));
+                    }
+
+                    // Baca hasil query dan tambahkan ke DataTable
+                    while (reader.Read())
+                    {
+                        DataRow row = historyMasuk.NewRow();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string columnName = reader.GetName(i);
+                            if (columnName == "tipe") // Jika nama kolom adalah "tipe"
+                            {
+                                int tipeValue = reader.GetInt32(i);
+                                EnumPakanKonserat tipe = (EnumPakanKonserat)tipeValue;
+                                row[columnName] = tipe.ToString();
+                            }
+                            else
+                            {
+                                row[columnName] = reader.GetValue(i);
+                            }
+                        }
+                        historyMasuk.Rows.Add(row);
+                    }
+                }
+                return historyMasuk;
             }
             catch (Exception e)
             {
